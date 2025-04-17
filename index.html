@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Akshaya ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+        
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 1000px;
+            background-image: url("https://www.psdgraphics.com/wp-content/uploads/2022/01/white-math-paper-texture.jpg");
+            background-position: center center;
+            overflow: hidden;
+        }
+
+        .paper {
+            background-image: url("https://i0.wp.com/textures.world/wp-content/uploads/2018/10/2-Millimeter-Paper-Background-copy.jpg?ssl=1");
+            background-size: 500px;
+            background-position: center center;
+            padding: 20px 100px;
+            box-shadow: 1px 15px 20px 0px rgba(0,0,0,0.5);
+            position: absolute;
+            cursor: grab;
+        }
+
+        .paper:active {
+            cursor: grabbing;
+        }
+
+        .paper.heart {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        .paper.heart::after {
+            content: "";
+            background-image: url('https://cdn.pixabay.com/photo/2016/03/31/19/25/cartoon-1294994__340.png');
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: 150px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+        }
+
+        .paper.image {
+            padding: 30px;
+        }
+
+        .paper.image p {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        img {
+            max-height: 200px;
+            width: 100%;
+            user-select: none;
+            border-radius: 5px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-family: 'Zeyada';
+            font-size: 50px;
+            color: rgb(0,0,100);
+            opacity: 0.75;
+            user-select: none;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+
+        .birthday-cake {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 60px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="paper heart"></div>
+    
+    <div class="paper image">
+        <p>Take care And</p>
+        <p>I Love You 😍</p>
+        <img src="https://i.pinimg.com/736x/be/03/ce/be03cec4ed76b9b01b2c47334b3ed6c7.jpg" />
+    </div>
+    
+    <div class="paper image">
+        <p></p>
+        <p>🌹I'm so thankful for you. Thank you for coming into my life. For making me smile, for understanding me, I'm thankful that the universe sent you and I'm thankful that I found you!! Happy birthday..to..you.❤️</p>
+        <img src="https://i.pinimg.com/736x/cf/e1/79/cfe179c3973d0c379b14b5d61cea0aa4.jpg" />
+    </div>
+    
+    <div class="paper">
+        <p class="p1">and My Wife</p>
+        <p class="p2">Akshaya ki rayununna love letter yem anagaa ante..!😍</p>
+    </div>
+    
+    <div class="paper">
+        <p class="p1">Firstly "Happy Birthday to the love of my life!</p>
+        <p class="p1">Always Be happy! keep smileing🌹...<span style="color: red !important;">❤️</span></p>
+        <img src="https://i.pinimg.com/474x/ca/22/f3/ca22f3975897ac57b801d1a65fb4f631.jpg" />
+    </div>
+    
+    <div class="paper">
+        <p class="p1">❤️AKSHAYA🌹❤️</p>
+        <p class="p1">❤️SENIOR<span style="color: red !important;">❤️</span></p>
+        <img src="https://i.pinimg.com/736x/9d/27/be/9d27be5d32a1a31445233cac5afe8087.jpg" />
+    </div>
+    
+    <div class="paper">
+        <p class="p1">Hey ammu ❤️🌹!!</p>
+        <p class="p1">Drag the papers to move!</p>
+    </div>
+
+    <div class="birthday-cake" id="birthdayCake">🎂</div>
+    <div class="instructions">Drag the letters around • Click the cake!</div>
+
+    <script>
+        // Simple dragging functionality
+        const papers = document.querySelectorAll('.paper');
+        let activePaper = null;
+        let offsetX, offsetY;
+        
+        // Set initial positions in a circle
+        papers.forEach((paper, index) => {
+            const angle = (index * (360 / papers.length)) * Math.PI / 180;
+            const radius = 200;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            const x = centerX + radius * Math.cos(angle) - 150;
+            const y = centerY + radius * Math.sin(angle) - 150;
+            
+            paper.style.left = `${x}px`;
+            paper.style.top = `${y}px`;
+        });
+
+        papers.forEach(paper => {
+            paper.addEventListener('mousedown', (e) => {
+                activePaper = paper;
+                offsetX = e.clientX - paper.getBoundingClientRect().left;
+                offsetY = e.clientY - paper.getBoundingClientRect().top;
+                paper.style.zIndex = 1000;
+                paper.style.cursor = 'grabbing';
+            });
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!activePaper) return;
+            
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            
+            activePaper.style.left = `${x}px`;
+            activePaper.style.top = `${y}px`;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (activePaper) {
+                activePaper.style.cursor = 'grab';
+                activePaper = null;
+            }
+        });
+
+        // Cake click event
+        document.getElementById('birthdayCake').addEventListener('click', () => {
+            // Change cake to heart cake
+            const cake = document.getElementById('birthdayCake');
+            cake.textContent = '💖';
+            cake.style.fontSize = '70px';
+            
+            setTimeout(() => {
+                cake.textContent = '🎂';
+                cake.style.fontSize = '60px';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
